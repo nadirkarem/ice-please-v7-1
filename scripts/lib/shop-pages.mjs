@@ -121,7 +121,7 @@ function optionSelect(info, t) {
 export function qtyControl(t, { id = 'buy-qty', value = 1, min = 1, label } = {}) {
   return `<div class="ip-qty" role="group" aria-label="${esc(label ?? t.buy.qty)}">
             <button class="ip-qty__btn" type="button" data-ip-qty="-1" aria-label="${esc(t.buy.qtyMinus)}">${icon('minus')}</button>
-            <input class="ip-qty__input" id="${id}" name="qty" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="${value}" data-min="${min}" aria-label="${esc(t.buy.qty)}">
+            <input class="ip-qty__input" id="${id}" name="qty" type="text" inputmode="numeric" enterkeyhint="done" pattern="[0-9]*" autocomplete="off" value="${value}" data-min="${min}" aria-label="${esc(t.buy.qty)}">
             <button class="ip-qty__btn" type="button" data-ip-qty="1" aria-label="${esc(t.buy.qtyPlus)}">${icon('plus')}</button>
           </div>`;
 }
@@ -225,7 +225,7 @@ export function shop(ctx) {
           <div class="ip-chips" role="group" aria-label="${esc(t.list.filters)}">${chips}</div>
           <div class="ip-search">
             <label class="ip-sr" for="shop-q">${esc(t.list.search)}</label>
-            <input id="shop-q" type="search" data-ip-search placeholder="${esc(t.list.searchPlaceholder)}" autocomplete="off">
+            <input id="shop-q" type="search" enterkeyhint="search" data-ip-search placeholder="${esc(t.list.searchPlaceholder)}" autocomplete="off">
           </div>
         </div>
         <p class="ip-shop__count" role="status" aria-live="polite" data-ip-count data-template="${esc(t.list.shown)}"></p>

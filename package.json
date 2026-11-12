@@ -1,9 +1,9 @@
 {
-  "name": "ice-please-site-v7",
+  "name": "ice-please-site-v7-1",
   "private": true,
-  "version": "0.7.0",
+  "version": "0.7.1",
   "type": "module",
-  "description": "Ice Please (Maroc) — site et boutique FR/EN/AR, statique : version 7, « le plateau »",
+  "description": "Ice Please (Maroc) — site et boutique FR/EN/AR, statique : version 7.1 (finitions téléphone)",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5300",
     "build": "vite build",

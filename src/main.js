@@ -15,6 +15,9 @@ const offScrollOf = (fn) => scroller.removeEventListener('scroll', fn);
 let cleanups = [];
 const track = (fn) => cleanups.push(fn);
 
+/* iOS Safari only applies :active (the press state of every control) on a page that listens to touches */
+document.addEventListener('touchstart', () => {}, { passive: true });
+
 initSmoothScroll();
 initHeader();
 initOdooChrome();
@@ -150,20 +153,32 @@ function initIce() {
 }
 
 /* The bar is ink on the paper and white on a night set: whichever set is under it decides. */
+/* On a phone the same reading also colours the browser around the page:
+   - theme-color (the status bar and Android's address bar) takes the set under the top edge, so the bar turns black
+     over a night scene instead of staying sky blue;
+   - the root background (what the rubber band shows past either end of the page) is the first set's colour while the
+     visitor is in the upper half of the page and night in the lower half, where the footer is. */
 function initTone() {
+  const SET_COLOR = { sun: '#96ceec', night: '#020a11' };
   const header = document.querySelector('[data-ip-header]');
   const sets = [...document.querySelectorAll('main [data-set], .ip-footer')];
   if (!header || !sets.length) return;
+  const theme = document.querySelector('meta[name="theme-color"]');
+  const first = sets[0].dataset.set || 'sun';
   let frame = 0;
   const update = () => {
     frame = 0;
-    const line = header.getBoundingClientRect().top + 40;
+    const line = 44; // the band under the status bar, whether the header is shown or has stepped aside
     let tone = 'sun';
     for (const el of sets) {
       const r = el.getBoundingClientRect();
       if (r.top <= line && r.bottom > line) tone = el.matches('.ip-footer') ? 'night' : el.dataset.set;
     }
     if (header.dataset.tone !== tone) header.dataset.tone = tone;
+    if (theme && theme.content !== SET_COLOR[tone]) theme.content = SET_COLOR[tone];
+    const lower = scrollTop() + innerHeight / 2 > document.documentElement.scrollHeight / 2;
+    const root = lower ? SET_COLOR.night : SET_COLOR[first];
+    if (document.documentElement.style.backgroundColor !== root) document.documentElement.style.backgroundColor = root;
   };
   const onScroll = () => { frame = frame || requestAnimationFrame(update); };
   update();
@@ -272,7 +287,7 @@ function initRouter() {
     document.title = doc.title;
     document.documentElement.lang = doc.documentElement.lang;
     document.documentElement.dir = doc.documentElement.dir;
-    for (const sel of ['meta[name="description"]', 'link[rel="canonical"]']) {
+    for (const sel of ['meta[name="description"]', 'link[rel="canonical"]', 'meta[name="theme-color"]']) {
       const a = document.head.querySelector(sel), b = doc.head.querySelector(sel);
       if (a && b) a.replaceWith(b.cloneNode(true)); else if (b) document.head.append(b.cloneNode(true)); else a?.remove();
     }

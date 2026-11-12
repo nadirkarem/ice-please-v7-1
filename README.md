@@ -1,8 +1,23 @@
-# Ice Please, maquette du site : version 7 (FR / EN / AR)
+# Ice Please, maquette du site : version 7.1 (FR / EN / AR)
 
-Aperçu en ligne : **https://nadirkarem.github.io/ice-please-v7/**
+Aperçu en ligne : **https://nadirkarem.github.io/ice-please-v7-1/** (la version 7, sans ces finitions, reste sur https://nadirkarem.github.io/ice-please-v7/ pour comparer)
 
 Proposition de refonte du site d'Ice Please Morocco (FAAB & CO), glaçons premium et clear ice pour les professionnels de la boisson. Ce n'est pas le site officiel : c'est un brouillon non indexé (`noindex`, `robots.txt` qui interdit tout), sans vraie commande ni vrai paiement.
+
+## Version 7.1 : la version 7 qui se comporte comme une application sur téléphone
+
+Même design, mêmes pages ; seulement la couche « téléphone » (méthode du skill *mobile-native* d'Emil Kowalski) :
+
+- **Barre du haut** : un toucher ne la laisse plus « survolée » (elle restait dense et ne s'effaçait plus en lisant) ; le survol ne vaut qu'avec une souris, la mise en avant au clavier passe par `:focus-visible`.
+- **Survols** : tous réservés aux souris (`(hover: hover) and (pointer: fine)`), y compris celui des champs.
+- **Toucher** : plus de flash bleu sur les boutons ; chaque commande réagit dès que le doigt se pose (`:active`, y compris dans Safari) et sans attendre un éventuel double toucher (`touch-action: manipulation`) ; le zoom à deux doigts reste disponible partout.
+- **Appui long** : le texte des boutons, onglets et cartes ne se sélectionne plus et les cartes n'ouvrent plus l'aperçu de lien ; le texte courant reste sélectionnable.
+- **Glaçon** : surface de geste déclarée (`touch-action: pan-y pinch-zoom`) : glisser à l'horizontale le fait tourner, à la verticale fait défiler la page.
+- **Bords de l'écran** : marges et éléments fixes (barre, bouton WhatsApp, messages) écartés de l'encoche en paysage, des deux côtés, arabe compris.
+- **Couleurs du navigateur** : la barre d'état prend la couleur de la scène sous elle (bleu ciel ou nuit) au lieu d'un blanc qui ne correspondait à rien ; le rebond en haut et en bas de page montre la couleur de la page et non un bleu sous le pied de page noir ; `color-scheme: light` déclaré.
+- **Barre d'adresse** : le papier du fond ne s'étire plus quand elle apparaît ou disparaît, et le glaçon n'est plus recalculé à chaque fois.
+- **Claviers** : touche « Rechercher » dans la recherche, « OK » dans les quantités, majuscules automatiques sur nom et ville ; clavier Android qui redimensionne la page (`interactive-widget=resizes-content`).
+- **Glaçon sur téléphone** : dessiné à 1,5 pixel par point au plus, pour une première seconde fluide.
 
 ## Ce qui change par rapport à la version 6
 
@@ -48,4 +63,4 @@ Le paquet Odoo de la version 6 (`npm run odoo`) n'est **pas** repris : avec une 
 
 ## Mise en ligne
 
-Chaque envoi sur la branche `main` reconstruit le site et le publie sur GitHub Pages (`.github/workflows/pages.yml`).
+Chaque envoi sur la branche `main` reconstruit le site et le publie sur GitHub Pages (`.github/workflows/pages.yml`). Dépôt : `nadirkarem/ice-please-v7-1` (version 7 : `nadirkarem/ice-please-v7`).

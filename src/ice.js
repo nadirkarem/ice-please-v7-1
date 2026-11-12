@@ -427,6 +427,7 @@ export function createIce(host, { slot, shape = 'cube', mirror = false, onReady 
   const pageTex = gl.createTexture();
   const pageCanvas = document.createElement('canvas');
   let size = { w: 1, h: 1 }, dpr = 1, quality = 1;
+  const coarse = window.matchMedia('(pointer: coarse)').matches;
 
   const state = {
     shape,
@@ -453,7 +454,8 @@ export function createIce(host, { slot, shape = 'cube', mirror = false, onReady 
   let place = { cx: 0, cy: 0, s: 100 };
 
   function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2) * quality;
+    // a phone draws at 1.5 pixels per point at most: the block is traced per pixel and the first second on a phone must not stutter
+    dpr = Math.min(window.devicePixelRatio || 1, coarse ? 1.5 : 2) * quality;
     const texScale = Math.min(window.devicePixelRatio || 1, 2);
     size = paintPage(host, pageCanvas, texScale);
     canvas.width = Math.max(1, Math.round(size.w * dpr)); canvas.height = Math.max(1, Math.round(size.h * dpr));
@@ -600,7 +602,19 @@ export function createIce(host, { slot, shape = 'cube', mirror = false, onReady 
   const io = new IntersectionObserver(([en]) => { state.visible = en.isIntersecting; if (state.visible) { state.dirty = true; kick(); } }, { rootMargin: '10% 0px' });
   io.observe(host);
   let rz = 0;
-  const onResize = () => { clearTimeout(rz); rz = setTimeout(() => { resize(); kick(); }, 120); };
+  // a phone fires 'resize' each time the URL bar slides in or out; the hero (svh) does not change size then, so the page
+  // copy and the canvas are only rebuilt when the section really changed size
+  let last = '';
+  const onResize = () => {
+    clearTimeout(rz);
+    rz = setTimeout(() => {
+      const r = host.getBoundingClientRect();
+      const key = `${Math.round(r.width)}x${Math.round(r.height)}@${window.devicePixelRatio}`;
+      if (key === last) return;
+      last = key;
+      resize(); kick();
+    }, 120);
+  };
   window.addEventListener('resize', onResize);
   const ro = 'ResizeObserver' in window ? new ResizeObserver(onResize) : null;
   ro?.observe(host);

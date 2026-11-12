@@ -288,10 +288,11 @@ export function layout(ctx, page, main, { fragment = false } = {}) {
 <html lang="${lang}" dir="${dir}">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
   <title>${title}</title>
   ${description ? `<meta name="description" content="${description}">` : ''}
-  <meta name="theme-color" content="${site.themeColor}">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="${page.id === 'savoir' ? '#020a11' : site.themeColor}">
   ${noindex ? '<meta name="robots" content="noindex, nofollow">' : ''}
   <link rel="canonical" href="${canonical}">
   <meta name="ip-base" content="/">

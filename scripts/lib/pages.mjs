@@ -55,7 +55,7 @@ function contactDetails(ctx) {
  */
 const FORM_FIELDS = {
   contact: [
-    { key: 'name', odoo: 'name', required: true, autocomplete: 'name' },
+    { key: 'name', odoo: 'name', required: true, autocomplete: 'name', autocapitalize: 'words' },
     { key: 'phone', odoo: 'phone', type: 'tel', autocomplete: 'tel', inputmode: 'tel' },
     { key: 'email', odoo: 'email_from', type: 'email', required: true, autocomplete: 'email' },
     { key: 'company', odoo: 'company', autocomplete: 'organization' },
@@ -63,11 +63,11 @@ const FORM_FIELDS = {
     { key: 'message', odoo: 'description', required: true, wide: true, textarea: true },
   ],
   quote: [
-    { key: 'name', odoo: 'name', required: true, autocomplete: 'name' },
+    { key: 'name', odoo: 'name', required: true, autocomplete: 'name', autocapitalize: 'words' },
     { key: 'phone', odoo: 'phone', type: 'tel', required: true, autocomplete: 'tel', inputmode: 'tel' },
     { key: 'email', odoo: 'email_from', type: 'email', autocomplete: 'email' },
     { key: 'venue', odoo: 'company', required: true, autocomplete: 'organization' },
-    { key: 'city', odoo: 'city', required: true, autocomplete: 'address-level2' },
+    { key: 'city', odoo: 'city', required: true, autocomplete: 'address-level2', autocapitalize: 'words' },
     { key: 'date', odoo: 'date', type: 'date' },
     { key: 'needs', odoo: 'description', required: true, wide: true, textarea: true },
   ],
@@ -87,6 +87,7 @@ function form(ctx, kind) {
         field.required ? 'required' : '',
         field.autocomplete ? `autocomplete="${field.autocomplete}"` : '',
         field.inputmode ? `inputmode="${field.inputmode}"` : '',
+        field.autocapitalize ? `autocapitalize="${field.autocapitalize}"` : '',
         `aria-describedby="${id}-err"`,
       ].filter(Boolean).join(' ');
       const control = field.textarea
