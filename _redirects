@@ -1,0 +1,36 @@
+# Version 7: one page per product (the shop page presents and sells), the range is the shop, "À propos" lives in "Savoir-faire".
+# The former addresses also exist as small redirect pages for hosts without redirect rules (GitHub Pages).
+/espace-professionnels /savoir-faire/ 301!
+/glacons/* /shop/ 301!
+/en/ice/* /en/shop/ 301!
+/ar/ice/* /ar/shop/ 301!
+/about-us/* /savoir-faire/ 301!
+/en/about-us/* /en/know-how/ 301!
+/ar/about-us/* /ar/know-how/ 301!
+/cube-xl/* /shop/cube-xl/ 301!
+/ice-stick/* /shop/ice-stick/ 301!
+/moon-ball/* /shop/moon-ball/ 301!
+/custom-ice/* /shop/custom-ice/ 301!
+/gourmet-ice/* /shop/gourmet-ice/ 301!
+/ice-slab/* /shop/ice-slab/ 301!
+/crushed-ice/* /shop/crushed-ice/ 301!
+/dry-ice/* /shop/dry-ice/ 301!
+/ice-stamp/* /shop/ice-stamp/ 301!
+/en/cube-xl/* /en/shop/cube-xl/ 301!
+/en/ice-stick/* /en/shop/ice-stick/ 301!
+/en/moon-ball/* /en/shop/moon-ball/ 301!
+/en/custom-ice/* /en/shop/custom-ice/ 301!
+/en/gourmet-ice/* /en/shop/gourmet-ice/ 301!
+/en/ice-slab/* /en/shop/ice-slab/ 301!
+/en/crushed-ice/* /en/shop/crushed-ice/ 301!
+/en/dry-ice/* /en/shop/dry-ice/ 301!
+/en/ice-stamp/* /en/shop/ice-stamp/ 301!
+/ar/cube-xl/* /ar/shop/cube-xl/ 301!
+/ar/ice-stick/* /ar/shop/ice-stick/ 301!
+/ar/moon-ball/* /ar/shop/moon-ball/ 301!
+/ar/custom-ice/* /ar/shop/custom-ice/ 301!
+/ar/gourmet-ice/* /ar/shop/gourmet-ice/ 301!
+/ar/ice-slab/* /ar/shop/ice-slab/ 301!
+/ar/crushed-ice/* /ar/shop/crushed-ice/ 301!
+/ar/dry-ice/* /ar/shop/dry-ice/ 301!
+/ar/ice-stamp/* /ar/shop/ice-stamp/ 301!
