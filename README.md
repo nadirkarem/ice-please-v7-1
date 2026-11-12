@@ -63,4 +63,10 @@ Le paquet Odoo de la version 6 (`npm run odoo`) n'est **pas** repris : avec une 
 
 ## Mise en ligne
 
-Chaque envoi sur la branche `main` reconstruit le site et le publie sur GitHub Pages (`.github/workflows/pages.yml`). Dépôt : `nadirkarem/ice-please-v7-1` (version 7 : `nadirkarem/ice-please-v7`).
+GitHub Pages sert la branche `gh-pages`, qui contient le site déjà construit pour l'adresse `/ice-please-v7-1/` :
+
+```bash
+BASE_PATH=/ice-please-v7-1 npm run build
+touch dist/.nojekyll
+cd dist && git init -q -b gh-pages && git add -A && git commit -qm "Site construit" && git push -f https://github.com/nadirkarem/ice-please-v7-1.git gh-pages
+``` Dépôt : `nadirkarem/ice-please-v7-1` (version 7 : `nadirkarem/ice-please-v7`).
