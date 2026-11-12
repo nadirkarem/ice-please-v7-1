@@ -69,4 +69,6 @@ GitHub Pages sert la branche `gh-pages`, qui contient le site déjà construit p
 BASE_PATH=/ice-please-v7-1 npm run build
 touch dist/.nojekyll
 cd dist && git init -q -b gh-pages && git add -A && git commit -qm "Site construit" && git push -f https://github.com/nadirkarem/ice-please-v7-1.git gh-pages
-``` Dépôt : `nadirkarem/ice-please-v7-1` (version 7 : `nadirkarem/ice-please-v7`).
+```
+
+Dépôt : `nadirkarem/ice-please-v7-1` (version 7 : `nadirkarem/ice-please-v7`).
